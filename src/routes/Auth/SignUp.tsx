@@ -2,6 +2,7 @@ import authService from "@/appwrite/auth.appwrite";
 import { formDataToString } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -28,13 +29,13 @@ const SignUp = () => {
     return navigate("/auth/sign-in");
   };
   return (
-    <main className="h-screen w-full flex flex-col justify-center items-center bg-amuk-background">
+    <main className="min-h-screen w-full flex flex-col justify-center items-center bg-amuk-background">
       <form
         onSubmit={handleSubmit}
         className=" w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 border-2 border-white p-8 sm:p-5 md:p-10 lg:p-16 rounded-2xl flex flex-col gap-16 text-center "
       >
         <div className="space-y-5">
-          {/* Todo: add back button react-icon */}
+        <Link to = "/auth/sign-in"><IoArrowBackOutline size={25} /></Link>
           <h2>Sign Up</h2>
           <h6>
             Sign up now to unlock a world of honest opinions and candid
@@ -101,7 +102,7 @@ const SignUp = () => {
             Sign Up
           </button>
           <Link to="/auth/sign-in">
-            Already have an account?<span>Login</span>
+            Already have an account? <span>Login</span>
           </Link>
         </div>
       </form>
