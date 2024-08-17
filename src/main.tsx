@@ -6,6 +6,7 @@ import RootLayout from "./layouts/RootLayout.tsx";
 import Loader from "./components/custom/Loader.tsx";
 import AuthLayout from "./layouts/AuthLayout.tsx";
 import AuthLoader from "./components/custom/AuthLoader.tsx";
+import { Toaster } from "react-hot-toast";
 
 const Home = lazy(() => import("./routes/Root/Home.tsx"));
 const Dashboard = lazy(() => import("./routes/Root/Dashboard.tsx"));
@@ -109,5 +110,13 @@ const router: any = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
+    <Toaster toastOptions={
+      {
+        style:{
+          background: "#232323",
+          color: "#fff"
+        }
+      }
+    }/>
   </StrictMode>
 );
