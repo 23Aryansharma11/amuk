@@ -51,6 +51,11 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        amuk:{
+          background: "#171717",
+          foreground: "#232323",
+          accent: "#7D84D8"
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
