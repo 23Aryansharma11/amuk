@@ -1,5 +1,5 @@
 import config from "./config.appwrite";
-import { Client, ID, Databases } from "appwrite";
+import { Client, ID, Databases, Query } from "appwrite";
 
 class UserService {
   client: Client = new Client();
@@ -24,6 +24,19 @@ class UserService {
       return user;
     } catch (error) {
       console.log("Error Creating user: ", error);
+    }
+  }
+
+  async fetchUser(userId: string) {
+    try {
+      const userData = await this.database?.listDocuments(
+        config.database,
+        config.collection.user,
+        [Query.equal("userId", String(userId))]
+      );
+      return userData;
+    } catch (error) {
+      console.log("Error Fetching user: ", error);
     }
   }
 }

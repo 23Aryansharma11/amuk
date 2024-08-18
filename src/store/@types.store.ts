@@ -1,12 +1,14 @@
-export interface User{
-    name: string
-    email: string
-    id: string
-    avatar: string
+export interface User {
+  name: string;
+  email: string;
+  id: string;
+  avatar: string;
+  noOfFeedback: number;
+  noOfPosts: number;
 }
 
-export interface UserStore{
-    user: User | null
-    login: (user: User) => void
-    logout: () => void
+export interface UserStore {
+  user: User | null;
+  login: (user: User) => void;
+  logout: () => void;
 }

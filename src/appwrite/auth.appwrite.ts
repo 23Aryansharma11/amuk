@@ -42,8 +42,9 @@ class AuthService {
         email,
         password
       );
-      console.log("userSession: ", userSession);
-      return userSession;
+      const userData = await userService.fetchUser(String(userSession?.userId));
+      
+      return userData;
     } catch (error) {
       console.log("Error during signin: ", error);
       throw error;

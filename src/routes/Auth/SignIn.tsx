@@ -3,9 +3,12 @@ import { formDataToString } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
+import { User } from "@/store/@types.store";
+import { useUserStore } from "@/store/useStore";
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const { login } = useUserStore();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -15,12 +18,22 @@ const SignIn = () => {
 
     const response = await authService.signInUser(email, password);
 
-    if (!response?.$id) {
+    if (!response?.documents?.length) {
       return toast.error("Invalid email or password");
     }
 
+    // Save user to local storage
+    const storageUser: User = {
+      id: response.documents[0].$id,
+      name: response.documents[0].name,
+      email: response.documents[0].email,
+      avatar: response.documents[0].avatar,
+      noOfFeedback: response.documents[0].noOfFeedback,
+      noOfPosts: response.documents[0].post.length,
+    };
+    login(storageUser);
     toast.success("Logged in successfully");
-    return navigate(`/dashboard/${response.$id}`);
+    return navigate(`/dashboard/${response.documents[0].$id}`);
   };
 
   return (
@@ -30,14 +43,16 @@ const SignIn = () => {
         className=" w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 border-2 border-white p-8 sm:p-5 md:p-10 lg:p-16 rounded-2xl flex flex-col gap-16 text-center "
       >
         <div className="space-y-5">
-          <Link to = "/"><IoArrowBackOutline size={25} /></Link>
+          <Link to="/">
+            <IoArrowBackOutline size={25} />
+          </Link>
           <h2>Sign in</h2>
           <h6>
-          Log in to view your anonymous messages and stay connected with your followers.
+            Log in to view your anonymous messages and stay connected with your
+            followers.
           </h6>
         </div>
         <div className="flex flex-col gap-11 text-left">
-          
           <div className="flex flex-col gap-2">
             <label htmlFor="email">Email</label>
             <input
@@ -62,7 +77,9 @@ const SignIn = () => {
               maxLength={20}
               className="px-2 py-3 bg-amuk-foreground rounded-[10px] focus:outline-none"
             />
-          <Link className="text-sm text-stone-500" to = "/auth/forgot-password">forgot password?</Link>
+            <Link className="text-sm text-stone-500" to="/auth/forgot-password">
+              forgot password?
+            </Link>
           </div>
         </div>
         <div className="flex flex-col gap-2 justify-center items-center">
@@ -79,6 +96,6 @@ const SignIn = () => {
       </form>
     </main>
   );
-}
+};
 
-export default SignIn
+export default SignIn;

@@ -8,7 +8,7 @@ const AuthLayout = () => {
       <Outlet />
     </main>
   ) : (
-    <Navigate to="/auth/sign-in" />
+    <Navigate to={`/dashboard/${user.id}`} />
   );
 };
 
