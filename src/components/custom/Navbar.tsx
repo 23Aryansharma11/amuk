@@ -15,12 +15,16 @@ const Navbar = () => {
           <h4>Amuk</h4>
         </div>
       </Link>
-      <Link to={user ? `/dashboard/${user.id}` : "/auth/sign-in"}>
+      <Link to={"/auth/sign-in"}>
         <div className=" text-xl">
           {/* Donot show user profile button on homepage even if user is logged in */}
           {user ? (
-            pathname !== "/" && (
+            pathname !== "/" ? (
               <img src={user?.avatar} className="size-12 rounded-full" />
+            ) : (
+              <button className="px-2 md:px-8 py-1 border-2 border-amuk-accent rounded-[10px] text-white bg-amuk-accent text-xs md:text-lg lg:text-xl font-medium leading-relaxed shadow-[1px_2px_10px_rgba(112,118,192,0.5)]">
+                Get Started
+              </button>
             )
           ) : (
             <button className="px-2 md:px-8 py-1 border-2 border-amuk-accent rounded-[10px] text-white bg-amuk-accent text-xs md:text-lg lg:text-xl font-medium leading-relaxed shadow-[1px_2px_10px_rgba(112,118,192,0.5)]">

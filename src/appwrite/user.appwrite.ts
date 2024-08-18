@@ -43,5 +43,3 @@ class UserService {
 
 const userService = new UserService();
 export default userService;
-
-// Todo: change store values
