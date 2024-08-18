@@ -16,7 +16,7 @@ const RootLayout = () => {
   }, [user, location, navigate]);
 
   return (
-    <main className="flex flex-col min-h-screen justify-between items-center">
+    <main className="flex flex-col min-h-screen justify-between items-center bg-amuk-background">
       <Navbar />
       <div className="w-full flex-grow">
         <Outlet />
