@@ -5,6 +5,7 @@ export interface User {
   avatar: string;
   noOfFeedback: number;
   noOfPosts: number;
+  joinedOn: string;
 }
 
 export interface UserStore {

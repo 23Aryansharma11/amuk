@@ -30,6 +30,7 @@ const SignIn = () => {
       avatar: response.documents[0].avatar,
       noOfFeedback: response.documents[0].noOfFeedback,
       noOfPosts: response.documents[0].post.length,
+      joinedOn: response.documents[0].$createdAt,
     };
     login(storageUser);
     toast.success("Logged in successfully");
