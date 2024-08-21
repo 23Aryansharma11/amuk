@@ -4,7 +4,9 @@ import { IoAddCircle } from "react-icons/io5";
 import { HiMiniChartBar } from "react-icons/hi2";
 import { MdManageSearch } from "react-icons/md";
 import { IoSettingsSharp } from "react-icons/io5";
-import { useUserData } from "@/store/useUserData";
+import { LuRefreshCw } from "react-icons/lu";
+import { useUserData } from "@/hooks/useUserData";
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
   const {user} = useUserStore()
@@ -33,20 +35,22 @@ const Dashboard = () => {
     },
   ];
 
+  const handleRefresh = () => {
+    toast("Refresh");
+  };
+
   return (
     <main className="min-h-screen w-full flex flex-col bg-amuk-background">
-      <div className="min-h-40 w-full bg-[url('https://img.freepik.com/free-vector/abstract-pattern-design_1053-525.jpg?t=st=1723984373~exp=1723987973~hmac=53d0dc1cb2a3743fb79f88274ab5024e7690a6ad8fcea8cc090b01ebc258cf6e&w=740')] flex p-5 gap-4 items-center place-content-between">
+      <div className="min-h-44 w-full bg-[url('https://img.freepik.com/free-vector/abstract-pattern-design_1053-525.jpg?t=st=1723984373~exp=1723987973~hmac=53d0dc1cb2a3743fb79f88274ab5024e7690a6ad8fcea8cc090b01ebc258cf6e&w=740')] flex p-5 gap-4 items-center place-content-between">
         <div className="flex flex-col">
-          <span className="text-2xl md:text-3xl font-bold">{user?.name}</span>
-          <span className="text-base md:text-lg font-light">{user?.email}</span>
-          <span className="text-xs md:text-sm font-light">
-            Joined on: {formattedDate}
-          </span>
+          <h4>{user?.name}</h4>
+          <h5>{user?.email}</h5>
+          <h6>Joined on: {formattedDate}</h6>
         </div>
 
         <div className="flex flex-col">
-          <span className="text-xl md:text-2xl font-semibold">{formattedPosts} Posts</span>
-          <span className="text-base md:text-xl">{formattedFeedbacks} Feedbacks</span>
+          <h5>{formattedPosts} Posts</h5>
+          <h5>{formattedFeedbacks} Feedbacks</h5>
         </div>
       </div>
 
@@ -64,7 +68,10 @@ const Dashboard = () => {
       </div>
 
       <div className="flex flex-col p-6 my-3 w-full">
-        <span className="text-2xl md:text-3xl font-bold">Latest Replies</span>
+        <div className="flex items-center">
+          <h4>Latest Replies</h4>&nbsp;&nbsp;
+          <LuRefreshCw size={24} onClick={handleRefresh} className="cursor-pointer"/></div>
+        
         {/* div to contain activity here*/}
       </div>
     </main>
