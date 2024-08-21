@@ -3,10 +3,10 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout.tsx";
-import Loader from "./components/custom/Loader.tsx";
 import AuthLayout from "./layouts/AuthLayout.tsx";
-import AuthLoader from "./components/custom/AuthLoader.tsx";
+import AuthLoader from "./components/custom/Loaders/AuthLoader.tsx";
 import { Toaster } from "react-hot-toast";
+import RootLoader from "./components/custom/Loaders/RootLoader.tsx";
 
 const Home = lazy(() => import("./routes/Root/Home.tsx"));
 const Dashboard = lazy(() => import("./routes/Root/Dashboard.tsx"));
@@ -24,11 +24,11 @@ const SignUp = lazy(() => import("./routes/Auth/SignUp.tsx"));
 const ForgotPassword = lazy(() => import("./routes/Auth/ForgotPassword.tsx"));
 const ErrorPage = lazy(() => import("./routes/Root/ErrorPage.tsx"));
 
-const router: any = createBrowserRouter([
+const router:any = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<RootLoader />}>
         <RootLayout />
       </Suspense>
     ),

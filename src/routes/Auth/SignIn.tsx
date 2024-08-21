@@ -1,23 +1,25 @@
 import authService from "@/appwrite/auth.appwrite";
-import { formDataToString } from "@/lib/utils";
+import { cn, formDataToString } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import { User } from "@/store/@types.store";
 import { useUserStore } from "@/store/useStore";
+import { useState } from "react";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { login } = useUserStore();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    setLoading(true);
     const formData = new FormData(event.target as HTMLFormElement);
     const { email, password } = formDataToString(formData);
 
     const response = await authService.signInUser(email, password);
-
+    setLoading(false);
     if (!response?.documents?.length) {
       return toast.error("Invalid email or password");
     }
@@ -86,12 +88,19 @@ const SignIn = () => {
         <div className="flex flex-col gap-2 justify-center items-center">
           <button
             type="submit"
-            className="w-64 px-2 py-3 bg-amuk-foreground rounded-[10px] focus:outline-none"
+            disabled={loading}
+            className={cn(
+              "w-64 px-2 py-3 bg-amuk-foreground rounded-[10px] focus:outline-none",
+              {
+                "cursor-not-allowed bg-amuk-foreground/50": loading,
+                "hover:bg-amuk-background": !loading,
+              }
+            )}
           >
-            Sign In
+            {loading ? "Loading..." : "Sign in"}
           </button>
           <Link to="/auth/sign-up">
-            Don't have an account? <span>Sign up</span>
+            Don't have an account? <span className="underline">Sign up</span>
           </Link>
         </div>
       </form>
