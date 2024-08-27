@@ -101,7 +101,7 @@ const CreatePost = () => {
               "w-64 px-2 py-3 bg-amuk-foreground rounded-[10px] focus:outline-none",
               {
                 "cursor-not-allowed bg-amuk-foreground/50": loading,
-                "hover:bg-amuk-background": !loading,
+                "hover:bg-amuk-accent": !loading,
               }
             )}
           >
