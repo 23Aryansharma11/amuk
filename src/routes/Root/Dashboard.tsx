@@ -42,7 +42,7 @@ const Dashboard = () => {
 
   return (
     <main className="w-full flex flex-col bg-amuk-background overflow-hidden">
-      <section className="w-full bg-[url('https://img.freepik.com/free-vector/black-pattern-with-wavy-shapes_1017-7482.jpg?t=st=1724737651~exp=1724741251~hmac=91fe2de8abe12acee47a9ff5b26ec7192b00222d6ba3e44c573ce8772fd30a12&w=740')] flex p-5 gap-4 items-center">
+      <section className="w-full bg-[url('https://img.freepik.com/free-vector/black-pattern-with-wavy-shapes_1017-7482.jpg?t=st=1724737651~exp=1724741251~hmac=91fe2de8abe12acee47a9ff5b26ec7192b00222d6ba3e44c573ce8772fd30a12&w=740')] flex place-content-between p-5 items-center">
         <div className="flex flex-col gap-2">
           <h3>{user?.name}</h3>
           <h4>{user?.email}</h4>
