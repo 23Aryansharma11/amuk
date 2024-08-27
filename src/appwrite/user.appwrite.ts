@@ -29,12 +29,13 @@ class UserService {
 
   async fetchUser(userId: string) {
     try {
+      console.log(userId);
       const userData = await this.database?.listDocuments(
         config.database,
         config.collection.user,
-        [Query.equal("userId", String(userId))]
+        [Query.equal("$id", userId)]
       );
-      return userData;
+      return userData?.documents[0];
     } catch (error) {
       console.log("Error Fetching user: ", error);
     }

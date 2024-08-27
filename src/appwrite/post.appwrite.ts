@@ -27,8 +27,20 @@ class PostService {
       console.log("Error creating post: ", error);
     }
   }
-  async getMyPosts(userId: string) {
+  async getMyPosts(userId: string, limit?: number) {
     try {
+      if (limit) {
+        const posts = await this.database?.listDocuments(
+          config.database,
+          config.collection.post,
+          [
+            Query.equal("user", String(userId)),
+            Query.limit(limit),
+            Query.orderDesc("createdAt"),
+          ]
+        );
+        return posts;
+      }
       const posts = await this.database?.listDocuments(
         config.database,
         config.collection.post,
