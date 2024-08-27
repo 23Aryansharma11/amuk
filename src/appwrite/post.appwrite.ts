@@ -46,6 +46,7 @@ class PostService {
         config.collection.post,
         postId
       );
+      console.log(post);
       return post;
     } catch (error) {
       console.log("Error getting post: ", error);

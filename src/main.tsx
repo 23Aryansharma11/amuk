@@ -24,7 +24,7 @@ const SignUp = lazy(() => import("./routes/Auth/SignUp.tsx"));
 const ForgotPassword = lazy(() => import("./routes/Auth/ForgotPassword.tsx"));
 const ErrorPage = lazy(() => import("./routes/Root/ErrorPage.tsx"));
 
-const router:any = createBrowserRouter([
+const router: any = createBrowserRouter([
   {
     path: "/",
     element: (
@@ -58,7 +58,7 @@ const router:any = createBrowserRouter([
         element: <FeedbackPoll />,
       },
       {
-        path: "feedback-post/:userId/:postId",
+        path: "feedback-post/:name/:postId",
         element: <FeedbackPost />,
       },
       {
@@ -74,7 +74,7 @@ const router:any = createBrowserRouter([
         element: <UpdatePost />,
       },
       {
-        path: "success-page/:userId/:postId",
+        path: "success/:postId",
         element: <SuccessPage />,
       },
     ],
@@ -98,25 +98,25 @@ const router:any = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgotPassword />,
-      }
+      },
     ],
   },
   {
     path: "*",
     element: <ErrorPage />,
-  }
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-    <Toaster toastOptions={
-      {
-        style:{
+    <Toaster
+      toastOptions={{
+        style: {
           background: "#232323",
-          color: "#fff"
-        }
-      }
-    }/>
+          color: "#fff",
+        },
+      }}
+    />
   </StrictMode>
 );
